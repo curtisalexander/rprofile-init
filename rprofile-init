@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 DIR_ROOT="${HOME}/code/rprofile-init"
+RED="\033[0;31m"
+NC="\033[0m"
 
 echo
 read -p "Initialize .Rprofile within $(pwd)? " -n 1 -r
@@ -21,19 +23,19 @@ if [[ ${REPLY} =~ ^[Yy]$ ]]; then
             --new-line-format='%L' ".Rprofile" "${DIR_ROOT}/Rprofile" | wc -l)
 
         if [ "$first_cmp" -eq "0" -o "$second_cmp" -eq "0" ]; then
-            echo "${DIR_ROOT}/Rprofile is a subset of .Rprofile; to prevent \
-                duplication, not appending"
+            echo "${DIR_ROOT}/Rprofile is a subset of .Rprofile"
+            echo -e "To prevent duplication, ${RED}not${NC} appending..."
             echo "    ${DIR_ROOT}/Rprofile to .Rprofile"
             echo
             # early exit
             exit 0
         else
-            echo ".Rprofile already exists; appending"
+            echo ".Rprofile already exists; appending..."
             echo "    ${DIR_ROOT}/Rprofile to $(pwd)/.Rprofile"
             echo
         fi
     else
-        echo "creating new .Rprofile at $(pwd)/.Rprofile"
+        echo "Creating new .Rprofile at $(pwd)/.Rprofile..."
         echo "Copying ${DIR_ROOT}/Rprofile to $(pwd)/.Rprofile"
         echo
     fi
