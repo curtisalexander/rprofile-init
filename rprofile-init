@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+DIR_ROOT="${HOME}/code/rprofile-init"
+
+echo
+read -p "Initialize .Rprofile within $(pwd)? " -n 1 -r
+echo; echo
+
+if [[ ${REPLY} =~ ^[Yy]$ ]]; then
+
+    # check if .Rprofile exists
+    if [ -f .Rprofile ]; then
+        # check to see if ${DIR_ROOT}/Rprofile
+        #   is a subset of .Rprofile
+        # prevents appending to file repeatedly
+
+        # from http://unix.stackexchange.com/a/114884
+        first_cmp=$(diff --unchanged-line-format= --old-line-format= \
+            --new-line-format='%L' "${DIR_ROOT}/Rprofile" ".Rprofile" | wc -l)
+        second_cmp=$(diff --unchanged-line-format= --old-line-format= \
+            --new-line-format='%L' ".Rprofile" "${DIR_ROOT}/Rprofile" | wc -l)
+
+        if [ "$first_cmp" -eq "0" -o "$second_cmp" -eq "0" ]; then
+            echo "${DIR_ROOT}/Rprofile is a subset of .Rprofile; to prevent \
+                duplication, not appending"
+            echo "    ${DIR_ROOT}/Rprofile to .Rprofile"
+            echo
+            # early exit
+            exit 0
+        else
+            echo ".Rprofile already exists; appending"
+            echo "    ${DIR_ROOT}/Rprofile to $(pwd)/.Rprofile"
+            echo
+        fi
+    else
+        echo "creating new .Rprofile at $(pwd)/.Rprofile"
+        echo "Copying ${DIR_ROOT}/Rprofile to $(pwd)/.Rprofile"
+        echo
+    fi
+
+    cat "${DIR_ROOT}/Rprofile" >> .Rprofile
+else
+    echo "Please cd into the directory desired to initialize .Rprofile"
+    echo
+fi
