@@ -16,7 +16,8 @@ realpath() {
     echo "${REALPATH}"
 }
 
-DIR_ROOT="$(realpath "$@")"
+DIR_ROOT="$(dirname $(realpath "$0"))"
+echo $DIR_ROOT
 # DIR_ROOT="${HOME}/code/rprofile-init"
 RED="\033[0;31m"
 NC="\033[0m"
