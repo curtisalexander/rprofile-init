@@ -14,4 +14,5 @@ rproject-init
 
 ### Questions
 **Q:** Why not just use a global `~/.Rprofile`?
+
 **A:** When using [packrat](rstudio.github.io/packrat/) as part of an R project, `packrat` automatically creates a `.Rprofile` file within the project directory.  Running `rprofile-init` copies the `rprofile-init/Rprofile` file into the local `.Rprofile` file.
