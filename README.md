@@ -8,7 +8,7 @@ Update the file `Rprofile` within the `rprofile-init` directory to your liking.
 Within an R project directory, create an `.Rprofile` file.  I prefer to symlink `rproject-init` into `~/bin` which is on my `$PATH`.  To use, `cd` into the directory desired and run the script.
 
 ```bash
-cd ~/projects/awesome-r-analyis
+cd ~/projects/awesome-r-analysis
 rproject-init
 ```
 
@@ -16,3 +16,5 @@ rproject-init
 **Q:** Why not just use a global `~/.Rprofile`?
 
 **A:** When using [packrat](rstudio.github.io/packrat/) as part of an R project, `packrat` automatically creates an `.Rprofile` file within the project directory.  Running `rprofile-init` copies the `rprofile-init/Rprofile` file into the local `.Rprofile` file, thus adding custom content to an already created `.Rprofile` file.
+
+Ultimately, this is a quick hack that allows a user to "inherit" the contents of a global `.Rprofile` into local `.Rprofile` instances.
