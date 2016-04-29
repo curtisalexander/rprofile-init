@@ -54,7 +54,7 @@ if [[ ${REPLY} =~ ^[Yy]$ ]]; then
         fi
     else
         echo "Creating new .Rprofile at $(pwd)/.Rprofile..."
-        echo "Copying ${DIR_ROOT}/Rprofile to $(pwd)/.Rprofile"
+        echo "    copying ${DIR_ROOT}/Rprofile to $(pwd)/.Rprofile"
         echo
     fi
 
