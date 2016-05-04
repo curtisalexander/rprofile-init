@@ -31,3 +31,5 @@ cat("paths should be built like so:\n> file.path(PROJHOME, sub_dir, file_name)\n
 cat("for more details see the post at:\nhttps://gist.github.com/jennybc/362f52446fe1ebc4c49f\n")
 cat("=====\n\n")
 rm(RPROJ)
+
+
